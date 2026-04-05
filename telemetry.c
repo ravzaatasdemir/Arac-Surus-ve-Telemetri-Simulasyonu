@@ -29,6 +29,11 @@ void sistemi_kur(float baslangic_sicaklik, int baslangic_sarj) {
 }
 
 void gaza_bas() {
+    if(batarya <= 0){
+        printf("[UYARI] Batarya Tukendi! Arac hareket ettirilemiyor.\n");
+        return;
+    }
+
     float artis = (rand() % 81 + 20) / 10.0f;
     hiz += artis;
     if(hiz > 70){
@@ -37,11 +42,7 @@ void gaza_bas() {
 
     if(batarya > 0){
         batarya -= 2;
-    }else{
-        printf("Batarya Tukendi");
-        return;
     }
-
     motor_sicakligi += 5.0;
 
     batarya_sicakligi += 2.0;
@@ -103,11 +104,13 @@ void rejen_fren(){
     }
     float azalis = (rand() % 81 + 20) / 10.0f;
 
+    float gercek_azalis = azalis;
     hiz -= azalis;
-
     if(hiz < 0){
+        gercek_azalis = gercek_azalis + hiz;
         hiz = 0.0;
     }
+    
 
     batarya += 1;
     if(batarya > 100){
@@ -127,7 +130,7 @@ void rejen_fren(){
         exit(1);
     }
 
-    rejen_kayitlari[rejen_sayisi] = azalis;
+    rejen_kayitlari[rejen_sayisi] = gercek_azalis; 
     rejen_sayisi++;
 
     printf("[BILGI] Rejeneratif fren devrede. Arac %.1f km/s yavasladi. Batarya sarj oluyor. Motor: %.1f C, Batarya: %.1f C\n", 
