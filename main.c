@@ -60,7 +60,7 @@ int main() {
         printf("SONUC: KRITIK HATA - Motor asiri isindi! Surus engellendi.\n");
         return 1;  // ekle
     } else if (sarj_yuzdesi < 10) {
-        printf("SONUC: UYARI - Batarya kritik seviyede! Surus baslatılamaz.\n");
+        printf("SONUC: UYARI - Batarya kritik seviyede! Surus baslatilamaz.\n");
         return 1;  // ekle
     } else if (kapi_durumu == 'A') {
         printf("SONUC: HATA - Kapilar acik! Lutfen kapatiniz.\n");
@@ -92,7 +92,7 @@ int main() {
             continue;
         }
         while(getchar() != '\n');
-        
+
         switch(secim) {
             case 1: gaza_bas(); break;
             case 2: frene_bas(); break;
